@@ -1,7 +1,8 @@
 import java.util.*;
 public class Pred 
 {
-	int pop=100,diff,n,p;
+	const int pop = 100;
+	int,diff,n,p;
 	double predPrice[]=new double[pop];
 	double percErr,act,strtPrice,mag,range;
 	String cmpName;
