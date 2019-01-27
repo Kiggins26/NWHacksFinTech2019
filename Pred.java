@@ -1,17 +1,24 @@
 import java.util.*;
 public class Pred 
 {
-	int pop=100,diff;
+	int pop=100,diff,n,p;
 	double predPrice[]=new double[pop];
-	double percErr,range;
-	double mag;
-	public Pred(int ran)	
+	double percErr,act,strtPrice,mag,range;
+	String cmpName;
+
+	public Pred(int pos,int neg,double actp, double strtP, String name)	
 	{
+		p=pos;
+		n=neg;
+		act=actp;
+		strtPrice=strtP;
 		range=100;
+		cmpName=name;
 	}
-	public void ret(int p,int n,double act, double strtPrice)
+	
+	public void calcPredPrice()
 	{
-		for(int i=0;i<100;i++)				//start price set
+		for(int i=0;i<100;i++)			
 		{
 			diff=p-n;
 			if(diff<0) 
@@ -26,10 +33,9 @@ public class Pred
 			}
 		}
 	}
-	public void nw(double strtPrice,double act)
+	public void everyHour()
 	{	
-		//repeat after every hour
-		double min=0; //CHANGE THISSSSSS
+		double min=99999999; 
 		for(int i=0;i<100;i++)
 		{
 			percErr=(strtPrice-act)/act;
@@ -47,17 +53,24 @@ public class Pred
 			range=range-0.5;
 		}
 	}
+	public double[] getPred()
+	{
+		return predPrice;
+	}
 	public static void main(String args[])
 	{
 		//scrape stuff pass here
-		//ret(1,2,3,4);
+		Pred obj=new Pred(1,2,3,4,"nanithefuck"); //int pos,int neg,double actualprice, double startingprice, string name
+		obj.calcPredPrice();
 		Timer t = new Timer();
 		t.schedule(new TimerTask() {
 		    @Override
-		    public void run() {
-		       System.out.println("Hello World");
+		    public void run() 
+		    {
+		    	System.out.println(obj.getPred());
+		       obj.everyHour();
 		    }
-		}, 0, 5000);
+		}, 0, 3600000);
 	}
 }
 
