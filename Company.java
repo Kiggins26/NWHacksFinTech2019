@@ -17,10 +17,10 @@ public class Company {
     public void incrementneg(){
         this.negs++;
     }
-    public void enddata(){
+    public String enddata(){
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
-        System.out.println(dateFormat.format(date) + "|" + company+"|"+poss+"|"+negs);
+        return dateFormat.format(date) + "|" + company+"|"+poss+"|"+negs;
         //yyyy/MM/dd HH:mm:ss|company|pos|neg
     }
 }
