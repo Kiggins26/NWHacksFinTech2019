@@ -1,8 +1,4 @@
 #BeautifulSoup and Requests are needed
-posWords = ['first','better','develop','lets you', 'new','product','love','built','sale','getting','fast','adding','will support','donation',
-'good','good news']
-negWords = ['fraud','fined','left','trouble','nervous',' shutting down','scam','harms','expensive','costly','shrinks','decrease','bad','bad news',
-'awful','alarming','contradictory','dishonorable','dirty','faulty','hostile','malicious','offensive','oppressive']
 import urllib2
 import BeautifulSoup
 import re
