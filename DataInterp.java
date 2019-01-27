@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -78,11 +79,20 @@ public class DataInterp {
             }
 
         }
-        facebook.enddata();
-        amazon.enddata();
-        apple.enddata();
-        netflix.enddata();
-        google.enddata();
+        try{
+            FileWriter writer = new FileWriter("Data.txt",true);
+            writer.write(facebook.enddata());
+            writer.write(amazon.enddata());
+            writer.write(apple.enddata());
+            writer.write(netflix.enddata());
+            writer.write(google.enddata());
+
+        }
+        catch(Exception e){
+            System.out.println();
+        }
     }
 }
+
+
 
