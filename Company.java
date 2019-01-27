@@ -1,7 +1,7 @@
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+import com.google.gson.*;
 public class Company {
     private int negs;
     private int poss;
@@ -17,10 +17,10 @@ public class Company {
     public void incrementneg(){
         this.negs++;
     }
-    public String enddata(){
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        Date date = new Date();
-        return dateFormat.format(date) + "|" + company+"|"+poss+"|"+negs;
-        //yyyy/MM/dd HH:mm:ss|company|pos|neg
+    public void enddata(){
+         JsonParser parser = new JsonParser();
+        JsonObject a = parser.parse("{\"company\": \""+company+"\"}").getAsJsonObject();  
+        JsonObject b = parser.parse("{\"pos\": \""+poss+"\"}").getAsJsonObject();
+        JsonObject c = parser.parse("{\"neg\": \""+negs+"\"}").getAsJsonObject();
     }
 }
