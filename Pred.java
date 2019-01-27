@@ -66,13 +66,28 @@ public class Pred{
         HashMap<String,Pred> stuff =  new HashMap<>();
         
         
-		Timer t = new Timer();
-		t.schedule(new TimerTask() {
-		    @Override
-		    public void run()
-		    {
-		    	
-		    }
-}, 0, 3600000);
+		int i=0;
+        while(i<data.length)
+        {
+        	
+        	if(stuff.containsKey(data[i]))
+        	{
+        		Timer t = new Timer();
+        		t.schedule(new TimerTask() 
+        		{
+        			@Override
+        		    public void run()
+        		    {
+        		    	stuff.get(data[i]).poppop();
+        		    	stuff.get(data[i]).getFinalpred();
+        		    }
+        }, 0, 3600000);
+        		}
+        	else 
+        	{
+        		stuff.put(data[i], new Pred(name, actPrice, i, i, actPrice));
+        	}
+        	i++;
+        }
     }
 }
