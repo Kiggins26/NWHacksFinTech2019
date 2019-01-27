@@ -65,16 +65,14 @@ public class Pred{
         String[] data = s.nextLine().split("|");
         HashMap<String,Pred> stuff =  new HashMap<>();
         
-        /*Pred obj=new Pred(1,2,3,4,"nanithefuck"); //int pos,int neg,double actualprice, double startingprice, string name
-		obj.calcPredPrice();
+        
 		Timer t = new Timer();
 		t.schedule(new TimerTask() {
 		    @Override
 		    public void run()
 		    {
-		    	System.out.println(obj.getPred());
-		       obj.everyHour();
+		    	
 		    }
-}, 0, 3600000);*/
+}, 0, 3600000);
     }
 }
