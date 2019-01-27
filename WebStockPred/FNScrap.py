@@ -19,21 +19,22 @@ def getPageText(url):
     return Newlines.sub('\n', txt)
 
 def main():
-
     urls = [
-        'https://www.theverge.com/search?q=facebook',
-        'https://www.theverge.com/search?q=apple',
-        'https://www.theverge.com/search?q=amazon',
-        'https://www.theverge.com/search?q=netflix',
-        'https://www.theverge.com/search?q=google'
+        'https://www.nasdaq.com/symbol/fb',
+        'https://www.nasdaq.com/symbol/aapl',
+        'https://www.nasdaq.com/symbol/amzn',
+        'https://www.nasdaq.com/symbol/nflx',
+        'https://www.nasdaq.com/symbol/GOOGL'
     ]
+    text_file = open("Data.txt","w")
+    
     txt = [getPageText(url) for url in urls]
     for i in txt:
-        print(i)
-        print("\n")
-        print("----")
-        print("\n")
-        
+        text_file.write(i)
+        text_file.write("\n")
+        text_file.write("----")
+        text_file.write("\n")
+    text_file.close()
 
 
 if __name__=="__main__":
