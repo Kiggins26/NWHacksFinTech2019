@@ -26,13 +26,15 @@ def main():
         'https://www.nasdaq.com/symbol/nflx',
         'https://www.nasdaq.com/symbol/GOOGL'
     ]
+    text_file = open("Pricedata.txt","w")
+    
     txt = [getPageText(url) for url in urls]
     for i in txt:
-        print(i)
-        print("\n")
-        print("----")
-        print("\n")
-
+        text_file.write(i)
+        text_file.write("\n")
+        text_file.write("----")
+        text_file.write("\n")
+    text_file.close()
 
 
 if __name__=="__main__":
