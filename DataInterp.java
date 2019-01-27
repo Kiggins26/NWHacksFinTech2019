@@ -81,11 +81,11 @@ public class DataInterp {
         }
         try{
             FileWriter writer = new FileWriter("Data.txt",true);
-            writer.write(facebook.enddata());
-            writer.write(amazon.enddata());
-            writer.write(apple.enddata());
-            writer.write(netflix.enddata());
-            writer.write(google.enddata());
+            writer.write(facebook.enddata() + "\n");
+            writer.write(amazon.enddata()+ "\n");
+            writer.write(apple.enddata()+ "\n");
+            writer.write(netflix.enddata()+ "\n");
+            writer.write(google.enddata()+ "\n");
 
         }
         catch(Exception e){
