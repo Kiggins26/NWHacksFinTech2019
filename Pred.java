@@ -14,7 +14,7 @@ public class Pred{
     private double actPrice;
     private double prevError;
     private double preError1;
-    public Pred(String name,double startPrice, int numberOfNeg, int numberOfPos, double margin){
+    public Pred(String name,double startPrice, int numberOfNeg, int numberOfPos){
         this.name = name;
         this.startPrice = startPrice;
         this.numberOfNeg = numberOfNeg;
@@ -30,7 +30,7 @@ public class Pred{
        double diff = (double) numberOfPos - (double) numberOfNeg;
         if(iter == 1){
             for(int i = 0; i < pop.length;i++){
-                pop[i] = startPrice + (-1*diff/(-1*Math.abs(diff))*(Math.random() * 100);
+                pop[i] = startPrice + (-1*diff/(-1*Math.abs(diff))*(Math.random() * 100));
                 iter++;
             }
         }
@@ -41,8 +41,9 @@ public class Pred{
             }
         }
     }
-    public void getFinalpred(){
+    public Double getFinalpred(){
         finalpred =  Arrays.stream(pop).average().orElse(Double.NaN);
+        return finalpred;
     }
     public void getmargin(){ //can be faster with a modified binary search
         int lowestlocation = 0;
@@ -60,34 +61,50 @@ public class Pred{
         range =range - (prevError-preError1);
         preError1 = prevError;
     }
+    public static String getKeys(String s1, String s2){
+        double x = Double.parseDouble(s1)- Double.parseDouble(s2);
+        if(x < 0){
+            for(int i = -1; i > -100;i = i -9){
+                if(x <= i && x >= i-9){
+                    return ""+i + " - "+(i-9);
+                }
+            }
+        }
+        if(x > 0){
+            for(int i = 1; i < 100;i = i +9){
+                if(x <= i && x >= i+9){
+                    return ""+i + " - "+(i+9);
+                }
+            }
+        }
+        return "0";
+    }
     public static void main(String[] args) throws IOException {
         Scanner s = new Scanner(new File("Data.txt"));
         String[] data = s.nextLine().split("|");
         HashMap<String,Pred> stuff =  new HashMap<>();
-        
-        
-		int i=0;
-        while(i<data.length)
-        {
-        	
-        	if(stuff.containsKey(data[i]))
-        	{
-        		Timer t = new Timer();
-        		t.schedule(new TimerTask() 
-        		{
-        			@Override
-        		    public void run()
-        		    {
-        		    	stuff.get(data[i]).poppop();
-        		    	stuff.get(data[i]).getFinalpred();
-        		    }
-        }, 0, 3600000);
-        		}
-        	else 
-        	{
-        		stuff.put(data[i], new Pred(name, actPrice, i, i, actPrice));
-        	}
-        	i++;
-        }
+		Timer t = new Timer();
+		t.schedule(new TimerTask() {
+		    @Override
+		    public void run()
+		    {
+		        String[] data = s.nextLine().split("|");
+		        String holder = getKeys(data[2],data[3]);
+		        Pred val = stuff.get(holder);
+		        if(val != null){
+
+                }
+                else{
+		            stuff.put(holder, new Pred(data[1],100,Integer.parseInt(data[3]),Integer.parseInt(data[2])));
+		            Pred newval = stuff.get(holder);
+		            newval.poppop();
+		            newval.setActPrice(150);
+		            newval.getmargin();
+		            System.out.println(newval.getFinalpred());
+                        
+                }
+
+		    }
+}, 0, 3600000);
     }
 }
